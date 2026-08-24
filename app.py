@@ -47,15 +47,13 @@ st.markdown("""
 
 # 3. Encabezado con Tooltip que explica el origen y propósito
 st.title(
-    "Resumiendo",
+    "✂️ Resumiendo",
     help=(
         "Herramienta interactiva de procesamiento del lenguaje natural (PLN) inspirada "
         "en la aplicación original de la Unidad 7 del curso. Aplica algoritmos de resumen "
         "extractivo (TextRank) para identificar y extraer las oraciones clave de un texto en español."
     )
 )
-
-st.markdown("### ✂️")
 st.write(
     "Una aplicación web para realizar resúmenes de textos en castellano. "
     "Por defecto, los resúmenes tendrán aproximadamente un **20%** de la longitud del original. "
