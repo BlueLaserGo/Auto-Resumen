@@ -49,9 +49,9 @@ st.markdown("""
 st.title(
     "Resumiendo",
     help=(
-        "Herramienta interactiva de procesamiento del lenguaje natural (PLN)"
-        "Aplica algoritmos de resumen extractivo (TextRank) para identificar y extraer "
-        "oraciones clave de un texto en español."
+        "Herramienta interactiva de procesamiento del lenguaje natural (PLN) inspirada "
+        "en la aplicación original de la Unidad 7 del curso. Aplica algoritmos de resumen "
+        "extractivo (TextRank) para identificar y extraer las oraciones clave de un texto en español."
     )
 )
 
@@ -72,7 +72,12 @@ texto_usuario = st.text_area(
     height=220
 )
 
-# 5. Etiqueta personalizada con tooltip pegado a la última letra
+# Contador orientativo de palabras
+num_palabras = len(texto_usuario.strip().split()) if texto_usuario.strip() else 0
+if num_palabras > 0:
+    st.caption(f"Palabras detectadas: **{num_palabras}**")
+
+# 5. Ajuste del ratio con etiqueta y tooltip pegado al texto
 st.markdown(
     '**Ratio de compresión** '
     '<span title="Define la fracción del texto que se mantendrá en el resumen. Por ejemplo, 0.2 equivale al 20% del texto original.">ℹ️</span>',
@@ -85,13 +90,8 @@ ratio_seleccionado = st.slider(
     max_value=0.5,
     value=0.2,
     step=0.05,
-    label_visibility="collapsed"  # Oculta la etiqueta nativa para evitar que quede a la derecha
+    label_visibility="collapsed"
 )
-
-# Contador orientativo de palabras
-num_palabras = len(texto_usuario.strip().split()) if texto_usuario.strip() else 0
-if num_palabras > 0:
-    st.caption(f"Palabras detectadas: **{num_palabras}**")
 
 # 6. Botón de acción y ejecución
 if st.button("Enviar"):
