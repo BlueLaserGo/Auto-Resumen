@@ -7,30 +7,18 @@ st.set_page_config(
     page_icon="✂️",
     layout="centered"
 )
-
-# 2. Estilo minimalista personalizado (CSS sutil)
+# 2. Estilo minimalista personalizado compatible con modo claro y oscuro
 st.markdown("""
 <style>
-    /* Fondo general sutil y neutro */
-    .stApp {
-        background-color: #FAFAFA;
-    }
-    
-    /* Caja de texto con bordes redondeados limpios */
+    /* Asegurar que las cajas de texto tengan bordes limpios */
     .stTextArea textarea {
-        background-color: #FFFFFF;
-        border: 1px solid #E0E0E0;
         border-radius: 8px;
     }
-    .stTextArea textarea:focus {
-        border-color: #4A5568;
-        box-shadow: 0 0 0 1px #4A5568;
-    }
     
-    /* Botón de acción con estilo sólido y discreto */
+    /* Botón de acción con estilo sólido y texto siempre visible */
     .stButton > button {
         background-color: #2D3748;
-        color: #FFFFFF;
+        color: #FFFFFF !important;
         border-radius: 6px;
         padding: 0.5rem 1.8rem;
         border: none;
@@ -39,8 +27,7 @@ st.markdown("""
     }
     .stButton > button:hover {
         background-color: #1A202C;
-        color: #FFFFFF;
-        border: none;
+        color: #FFFFFF !important;
     }
 </style>
 """, unsafe_allow_html=True)
