@@ -8,7 +8,44 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. Encabezado con Tooltip que explica el origen y propósito
+# 2. Estilo minimalista personalizado (CSS sutil)
+st.markdown("""
+<style>
+    /* Fondo general sutil y neutro */
+    .stApp {
+        background-color: #FAFAFA;
+    }
+    
+    /* Caja de texto con bordes redondeados limpios */
+    .stTextArea textarea {
+        background-color: #FFFFFF;
+        border: 1px solid #E0E0E0;
+        border-radius: 8px;
+    }
+    .stTextArea textarea:focus {
+        border-color: #4A5568;
+        box-shadow: 0 0 0 1px #4A5568;
+    }
+    
+    /* Botón de acción con estilo sólido y discreto */
+    .stButton > button {
+        background-color: #2D3748;
+        color: #FFFFFF;
+        border-radius: 6px;
+        padding: 0.5rem 1.8rem;
+        border: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    .stButton > button:hover {
+        background-color: #1A202C;
+        color: #FFFFFF;
+        border: none;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# 3. Encabezado con Tooltip que explica el origen y propósito
 st.title(
     "Resumiendo",
     help=(
@@ -27,7 +64,7 @@ st.write(
 
 st.write("---")
 
-# 3. Formulario de entrada con placeholder limpio
+# 4. Formulario de entrada con placeholder limpio
 texto_usuario = st.text_area(
     label="Pega el texto aquí:",
     value="",
@@ -35,7 +72,7 @@ texto_usuario = st.text_area(
     height=220
 )
 
-# 4. Etiqueta personalizada con tooltip pegado a la última letra
+# 5. Etiqueta personalizada con tooltip pegado a la última letra
 st.markdown(
     '**Ratio de compresión** '
     '<span title="Define la fracción del texto que se mantendrá en el resumen. Por ejemplo, 0.2 equivale al 20% del texto original.">ℹ️</span>',
@@ -56,7 +93,7 @@ num_palabras = len(texto_usuario.strip().split()) if texto_usuario.strip() else 
 if num_palabras > 0:
     st.caption(f"Palabras detectadas: **{num_palabras}**")
 
-# 5. Botón de acción y ejecución
+# 6. Botón de acción y ejecución
 if st.button("Enviar"):
     if not texto_usuario.strip():
         st.warning("⚠️ Por favor, pega algún texto antes de pulsar en Enviar.")
