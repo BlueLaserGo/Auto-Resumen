@@ -7,6 +7,7 @@ st.set_page_config(
     page_icon="✂️",
     layout="centered"
 )
+
 # 2. Estilo minimalista personalizado compatible con modo claro y oscuro
 st.markdown("""
 <style>
@@ -62,20 +63,14 @@ num_palabras = len(texto_usuario.strip().split()) if texto_usuario.strip() else 
 if num_palabras > 0:
     st.caption(f"Palabras detectadas: **{num_palabras}**")
 
-# 5. Ajuste del ratio con etiqueta y tooltip pegado al texto
-st.markdown(
-    '**Ratio de compresión** '
-    '<span title="Define la fracción del texto que se mantendrá en el resumen. Por ejemplo, 0.2 equivale al 20% del texto original.">ℹ️</span>',
-    unsafe_allow_html=True
-)
-
+# 5. Ajuste del ratio con tooltip nativo (táctil y escritorio)
 ratio_seleccionado = st.slider(
     label="Ratio de compresión",
     min_value=0.1,
     max_value=0.5,
     value=0.2,
     step=0.05,
-    label_visibility="collapsed"
+    help="Define la fracción del texto que se mantendrá en el resumen. Por ejemplo, 0.2 equivale al 20% del texto original."
 )
 
 # 6. Botón de acción y ejecución
