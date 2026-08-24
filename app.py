@@ -35,18 +35,20 @@ texto_usuario = st.text_area(
     height=220
 )
 
-# 4. Ajuste del ratio con Tooltip explicativo
+# 4. Etiqueta personalizada con tooltip pegado a la última letra
+st.markdown(
+    '**Ratio de compresión** '
+    '<span title="Define la fracción del texto que se mantendrá en el resumen. Por ejemplo, 0.2 equivale al 20% del texto original.">ℹ️</span>',
+    unsafe_allow_html=True
+)
+
 ratio_seleccionado = st.slider(
     label="Ratio de compresión",
     min_value=0.1,
     max_value=0.5,
     value=0.2,
     step=0.05,
-    help=(
-        "Define la fracción del texto que se mantendrá en el resumen. "
-        "Por ejemplo, un ratio de 0.2 seleccionará las oraciones más relevantes hasta "
-        "alcanzar aproximadamente un 20% del volumen del texto original."
-    )
+    label_visibility="collapsed"  # Oculta la etiqueta nativa para evitar que quede a la derecha
 )
 
 # Contador orientativo de palabras
