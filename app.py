@@ -3,7 +3,7 @@ from summa import summarizer
 
 st.set_page_config(page_title="Resumidor de Textos PLN", page_icon="📝")
 
-st.title("📝 Resumidor de Textos con PLN")
+st.title("📝 Resúmenes de textos con PLN")
 st.write("Aplicación interactiva que aplica algoritmos de resumen extractivo (**TextRank**) sobre textos en español.")
 
 texto_ejemplo = (
