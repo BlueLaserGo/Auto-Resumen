@@ -8,8 +8,16 @@ st.set_page_config(
     layout="centered"
 )
 
-# 2. Encabezado y explicación (inspirado en la aplicación original)
-st.title("Resumiendo")
+# 2. Encabezado con Tooltip que explica el origen y propósito
+st.title(
+    "Resumiendo",
+    help=(
+        "Herramienta interactiva de procesamiento del lenguaje natural (PLN) inspirada "
+        "en la aplicación original de la Unidad 7 del curso. Aplica algoritmos de resumen "
+        "extractivo (TextRank) para identificar y extraer las oraciones clave de un texto en español."
+    )
+)
+
 st.markdown("### ✂️")
 st.write(
     "Una aplicación web para realizar resúmenes de textos en castellano. "
@@ -19,22 +27,26 @@ st.write(
 
 st.write("---")
 
-# 3. Formulario de entrada con texto de ayuda (placeholder) en blanco
+# 3. Formulario de entrada con placeholder limpio
 texto_usuario = st.text_area(
     label="Pega el texto aquí:",
-    value="",  # Se deja vacío para que no cargue texto por defecto
+    value="",
     placeholder="Introduce o pega aquí el texto en castellano que deseas resumir (mínimo recomendado: 100 palabras)...",
     height=220
 )
 
-# 4. Ajuste del ratio (con el 20% por defecto)
+# 4. Ajuste del ratio con Tooltip explicativo
 ratio_seleccionado = st.slider(
     label="Ratio de compresión",
     min_value=0.1,
     max_value=0.5,
-    value=0.2,  # 20% por defecto tal como indica la aplicación
+    value=0.2,
     step=0.05,
-    help="El valor 0.2 equivale a generar un resumen con un 20% de la extensión del texto original."
+    help=(
+        "Define la fracción del texto que se mantendrá en el resumen. "
+        "Por ejemplo, un ratio de 0.2 seleccionará las oraciones más relevantes hasta "
+        "alcanzar aproximadamente un 20% del volumen del texto original."
+    )
 )
 
 # Contador orientativo de palabras
@@ -42,7 +54,7 @@ num_palabras = len(texto_usuario.strip().split()) if texto_usuario.strip() else 
 if num_palabras > 0:
     st.caption(f"Palabras detectadas: **{num_palabras}**")
 
-# 5. Botón de acción
+# 5. Botón de acción y ejecución
 if st.button("Enviar"):
     if not texto_usuario.strip():
         st.warning("⚠️ Por favor, pega algún texto antes de pulsar en Enviar.")
@@ -50,7 +62,6 @@ if st.button("Enviar"):
         st.warning("⚠️ El texto es demasiado corto para extraer oraciones representativas. Introduce un texto más extenso (preferiblemente más de 100 palabras).")
     else:
         with st.spinner("Generando resumen..."):
-            # Llamada a Summa / TextRank
             resumen_generado = summarizer.summarize(
                 texto_usuario, 
                 ratio=ratio_seleccionado, 
