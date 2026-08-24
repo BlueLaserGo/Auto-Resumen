@@ -13,7 +13,7 @@ st.title(
     "Resumiendo",
     help=(
         "Herramienta interactiva de procesamiento del lenguaje natural (PLN)"
-        "Aplica algoritmos de resumen extractivo (TextRank) para identificar y extraer"
+        "Aplica algoritmos de resumen extractivo (TextRank) para identificar y extraer "
         "oraciones clave de un texto en español."
     )
 )
